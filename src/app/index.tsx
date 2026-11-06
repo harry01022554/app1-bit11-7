@@ -1,98 +1,61 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+//นำเข้า  วิว    ข้อความ             จาก   ชื่อไลบรารี่
+import { StyleSheet, Text, View,Image } from 'react-native'
+import { blue } from 'react-native-reanimated/lib/typescript/Colors'
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+// (หน้าขาว) ส่งออก เริ่มต้น  ฟังก์ชัน   ชื่อฟังก์ชัน
+export default function App(){
+  return(
+    <View style={homeStyle.cotainer}> 
+    {/* ใส่ข้อความ */}
+      <Text style={homeStyle.title}>Harry</Text>
+      {/* ใส่ภาพจากไฟล์ */}
+      <Image 
+      source={require('@/assets/spider-man.jpeg')}
+      style={{
+        width: 400,//กว้าง
+        height: 200, // สูง
+        borderRadius:100, //มุมโค้ง
+        borderWidth:8, //ขอบหนา
+        borderColor:"blue", //สีขอบ
+        
+      }}
+      />
+      {/* ใส่รุปจากเว็บ */}
+      <Image
+      source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJzKPhXiHeqA8K_nu_UsaSQdZ-hGoj1eSAaEMD2DeqzQ&s=10"}}
+      style={{
+        width: 400,//กว้าง
+        height: 300, // สูง
+        borderRadius:100, //มุมโค้ง
+        borderWidth:8, //ขอบหนา
+        borderColor:"blue", //สีขอบ
+        
+      }}
+      />
+      {/* เรียงวัตถุเเนวนอน ซ้ายไปขวา */}
+      <View>
+        <Text>🕷️เเมงมุม</Text>
+        <Text>🎶</Text>
+        
+      </View>
+      </View>
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
+  )
+
 }
-
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+//สร้างสไตร์
+const homeStyle = StyleSheet.create({
+  cotainer:{
+    backgroundColor: "red", // babackground-color สีพื้นหลัง
+    flex:1, //ขนาดเต็มพื้นที่
+    alignItems: "center" // ตรงกลาง
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-});
+  title:{
+    color: "white", //สีอักษร
+    fontSize: 32, // ขนาดอักษร
+    fontWeight: 700, //ความหนาอักษร 100-900
+    fontStyle: "italic", //เอียง
+    textAlign: "center" //ตรงกลาง
+   }
+})
+  
