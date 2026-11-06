@@ -7,7 +7,7 @@ export default function App(){
   return(
     <View style={homeStyle.cotainer}> 
     {/* ใส่ข้อความ */}
-      <Text style={homeStyle.title}>Harry</Text>
+      <Text style={homeStyle.title}>harry pottar</Text>
       {/* ใส่ภาพจากไฟล์ */}
       <Image 
       source={require('@/assets/spider-man.jpeg')}
